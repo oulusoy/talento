@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-box">
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar toggleable="lg" type="dark">
       <b-navbar-brand href="#">TALENTO</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .navbar-box {
   width: 100%;
-  background-color: #c036d7;
+  background-color: #282828;
   margin: 0;
   padding: 0;
 }
