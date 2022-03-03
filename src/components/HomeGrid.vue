@@ -70,6 +70,14 @@ export default {
   padding: 20px;
 }
 
+.customer:checked {
+  background: red;
+  height: 100vh;
+  cursor: pointer;
+  border-width: medium green;
+  padding: 20px;
+}
+
 .header_text{
   font-family: 'Bebas Neue', cursive;
   font-size: 34px;
