@@ -15,6 +15,9 @@
       <b-row>
         <!-- CUSTOMER BLOCK -->
         <b-col class="customer text-center" cols="12" lg="6" v-b-hover="hoverHandler">
+          <div class="h1 mb-0 icons">
+            <b-icon icon="tools"></b-icon>
+          </div>
           <p class="header_text">Ich suche einen Job</p>
         </b-col>
         <!-- END CUSTOMER BLOCK -->
@@ -22,9 +25,15 @@
         <b-col cols="12" lg="6">
           <b-row>
             <b-col class="employee_box1 text-center" cols="12" lg="6" v-b-hover="hoverHandler">
+              <div class="h1 mb-0 icons">
+                <b-icon icon="people"></b-icon>
+              </div>
               <p class="header_text">Ich suche Mitarbeiter</p>
             </b-col>
             <b-col class="employee_box2 text-center" cols="12" lg="6" v-b-hover="hoverHandler">
+              <div class="h1 mb-0 icons">
+                <b-icon icon="file-earmark-person"></b-icon>
+              </div>
               <p class="header_text">Wir benötigen Hilfe bei der Anmeldung des Mitarbeiters</p>
             </b-col>
           </b-row>
@@ -81,8 +90,11 @@ export default {
 .header_text{
   font-family: 'Bebas Neue', cursive;
   font-size: 34px;
-  margin-top: 350px;
   text-shadow: 1px 1px 4px #1d1d1d;
+}
+
+.icons {
+  margin-top: 360px;
 }
 
 .employee_box1 {
@@ -133,10 +145,11 @@ export default {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  top: 150px;
+  top: 125px;
   left: 0;
   right: 0;
-  width: 75%;
+  width: 70%;
+  max-width: 1000px;
   text-align: center;
   pointer-events: none;
   user-select: none;
