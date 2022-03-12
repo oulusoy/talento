@@ -2,7 +2,7 @@
   <div class="main-grid">
     <b-container fluid>
       <audio muted allow="autoplay">
-       <source src="../assets/sounds/modern-sound2.wav" />
+       <source src="src/assets/sounds/modern-sound2.wav" />
      </audio>
       <!-- header bg und Text -->
       <b-img
