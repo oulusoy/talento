@@ -1,14 +1,14 @@
 <template>
   <div>
-    <CustomerFunnel/>
+    <EmployeeFunnel></EmployeeFunnel>
   </div>
 </template>
 
 <script>
-import CustomerFunnel from "../components/cutomer/CustomerFunnel";
+import EmployeeFunnel from "../components/employee/EmployeeFunnel";
 export default {
-  name: 'Customer',
-  components: { CustomerFunnel },
+  name: 'Employee',
+  components: { EmployeeFunnel },
 }
 </script>
 

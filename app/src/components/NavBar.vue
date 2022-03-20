@@ -13,12 +13,16 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
+          <b-img
+              class="flag"
+              :src="require('@/assets/images/flags/' + flag)"
+              alt=""
+              :key="componentKey"
+          ></b-img>
+          <b-nav-item-dropdown right>
+            <b-dropdown-item @click="setLanguage('en')" >EN</b-dropdown-item>
+            <b-dropdown-item @click="setLanguage('de')" >DE</b-dropdown-item>
+            <b-dropdown-item @click="setLanguage('tr')" >TR</b-dropdown-item>
           </b-nav-item-dropdown>
 
         </b-navbar-nav>
@@ -29,7 +33,19 @@
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  data: function () {
+    return {
+      flag: this.$store.state.language.lang + '.png',
+    }
+  },
+  methods: {
+    setLanguage(value) {
+      this.$store.dispatch('setLanguage', value)
+      this.flag = value + '.png'
+      // console.log(this.$store.getters.getLanguage)
+    }
+  },
 }
 </script>
 
@@ -40,7 +56,9 @@ export default {
   margin: 0;
   padding: 0;
 }
-.navbar {
-  z-index: 100;
+.flag {
+  width: 30px;
+  height: 20px;
+  margin-top: 10px;
 }
 </style>

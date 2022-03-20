@@ -1,6 +1,5 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import * as cdk from 'aws-cdk-lib';
 import { aws_s3 as s3 } from 'aws-cdk-lib';
 import { aws_s3_deployment as s3deploy } from 'aws-cdk-lib';
 import { aws_cloudfront as cloudfront } from 'aws-cdk-lib';
@@ -22,9 +21,9 @@ export class CdkStack extends Stack {
     })
 
     new s3deploy.BucketDeployment(this, 'gotalentoDeployWebsite', {
-      sources: [s3deploy.Source.asset('gotalento/dist')],
+      sources: [s3deploy.Source.asset('app/dist')],
       destinationBucket: gotalentoWebBucket,
-      destinationKeyPrefix: 'web/static', // optional prefix in destination bucket
+      distribution: gotalentoWebDistribution,
       distributionPaths: ['/*']
     })
   }

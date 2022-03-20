@@ -14,11 +14,11 @@
       <!-- end header bg und Text -->
       <b-row>
         <!-- CUSTOMER BLOCK -->
-        <b-col class="customer text-center" cols="12" lg="6" v-b-hover="hoverHandler">
+        <b-col class="customer text-center" cols="12" lg="6" v-b-hover="hoverHandler" @click="goToEmployeeFunnel" >
           <div class="h1 mb-0 icons">
             <b-icon icon="tools"></b-icon>
           </div>
-          <p class="header_text">Ich suche einen Job</p>
+          <p class="header_text">{{ this.$store.getters.getCurrentLanguage.homeEmployee }}</p>
         </b-col>
         <!-- END CUSTOMER BLOCK -->
         <!-- EMPLOYEE BLOCK -->
@@ -28,13 +28,13 @@
               <div class="h1 mb-0 icons">
                 <b-icon icon="people"></b-icon>
               </div>
-              <p class="header_text">Ich suche Mitarbeiter</p>
+              <p class="header_text">{{ this.$store.getters.getCurrentLanguage.homeEmployer }}</p>
             </b-col>
             <b-col class="employee_box2 text-center" cols="12" lg="6" v-b-hover="hoverHandler">
               <div class="h1 mb-0 icons">
                 <b-icon icon="file-earmark-person"></b-icon>
               </div>
-              <p class="header_text">Wir benötigen Hilfe bei der Anmeldung des Mitarbeiters</p>
+              <p class="header_text">{{ this.$store.getters.getCurrentLanguage.homeEmployerSupport }}</p>
             </b-col>
           </b-row>
         </b-col>
@@ -53,6 +53,9 @@ export default {
           // <!-- end simulate mouseclick -->
           document.getElementsByTagName("audio")[0].play();
         } 
+    },
+    goToEmployeeFunnel() {
+      this.$router.push('/employee')
     }
   }
 }
