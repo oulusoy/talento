@@ -7,45 +7,40 @@
 
       <hr class="my-4">
 
-      <b-row class="m-3">
+      <b-row class="m-4">
         <b-col>
-
-        </b-col>
-      </b-row>
-      <b-row class="mb-3">
-        <b-col cols="12">
-          <b-form-input v-model="currentJob" placeholder="current Job"></b-form-input>
+          <b-form-tags input-id="tags-basic" v-model="diploma" placeholder="Schreiben Sie all Ihre Diplome, Aubildungen und Studiengänge auf"></b-form-tags>
         </b-col>
       </b-row>
       <p>
-        * Sie haben keinerlei kosten
+        * optional
       </p>
-
-      <b-button class="mr-2" variant="secondary" href="#">zurück</b-button>
-      <b-button variant="success" @click="nextStep">weiter mit dem Fragebogen</b-button>
+      <b-button class="mr-2" variant="secondary" @click="previousPage">zurück</b-button>
+      <b-button variant="success" @click="nextPage">weiter mit dem Fragebogen</b-button>
     </b-jumbotron>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Diplom',
+  name: 'Diploma',
   data: function () {
     return {
-      business: {
-        handcraft: '',
-        nursing: '',
-        engineering: '',
-        computer: '',
-        gastronomie: '',
-        medicine: '',
-      },
-      currentJob: '',
+      diploma: [],
+      previousStep: 3,
+      nextStep: 5,
     }
   },
+  mounted() {
+    this.diploma = this.$store.getters.getDiploma
+  },
   methods: {
-    nextStep() {
-
+    nextPage() {
+      this.$store.dispatch('setDiploma', this.diploma)
+      this.$emit('update:step', this.nextStep)
+    },
+    previousPage() {
+      this.$emit('update:step', this.previousStep)
     }
   },
 }

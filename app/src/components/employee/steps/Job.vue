@@ -2,18 +2,14 @@
   <div class="main-grid p-3">
     <b-jumbotron class="max1000 aliceblue" >
       <template #lead>
-        Berufserfahrung in Jahren
+        WAS IST IHR AKTUELLER BERUF ?
       </template>
 
       <hr class="my-4">
 
       <b-row class="m-4">
         <b-col>
-          <div>
-            <label for="range-2">Wiviel Berufserfahrung in Jahren haben Sie ?</label>
-            <b-form-input id="range-2" v-model="experienceInYears" type="range" min="0" max="20" step="1"></b-form-input>
-            <div class="mt-2">{{ experienceInYears }} Jahre Erfahrung</div>
-          </div>
+          <b-form-input v-model="currentJob" placeholder="*optional" v-text="currentJob"></b-form-input>
         </b-col>
       </b-row>
       <b-button class="mr-2" variant="secondary" @click="previousPage">zurück</b-button>
@@ -24,20 +20,21 @@
 
 <script>
 export default {
-  name: 'ExperienceInYears',
+  name: 'Job',
   data: function () {
     return {
-      experienceInYears: 0,
-      previousStep: 2,
-      nextStep: 4
+      currentJob: '',
+      previousStep: 1,
+      nextStep: 3,
+      showErrorMsg: false
     }
   },
   mounted() {
-    this.experienceInYears = this.$store.getters.getExperienceInYears
+    this.currentJob = this.$store.getters.getCurrentJob
   },
   methods: {
     nextPage() {
-      this.$store.dispatch('setExperienceInYears', this.experienceInYears)
+      this.$store.dispatch('setCurrentJob', this.currentJob)
       this.$emit('update:step', this.nextStep)
     },
     previousPage() {
@@ -49,12 +46,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.main-grid{
-  height: 100vh;
-  width: 100%;
-  background: radial-gradient(circle, rgba(88,171,208,1) 0%, rgba(69,133,161,1) 100%);
-}
-
 .max1000{
   max-width: 1000px;
   margin-right: auto;
@@ -63,5 +54,9 @@ export default {
 
 .aliceblue {
   background-color: aliceblue;
+}
+
+.red {
+  color: red;
 }
 </style>

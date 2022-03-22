@@ -7,19 +7,25 @@
     </b-progress>
     <!-- Branch Step 1 -->
     <Branch v-if="step === 1" :step.sync="step" ></Branch>
-    <!-- ExperienceInYears Step 2 -->
-    <ExperienceInYears v-if="step === 2" :step.sync="step" ></ExperienceInYears>
-    <!-- Diplom Step 3 -->
-    <Diplom v-if="step === 3" :step.sync="step" ></Diplom>
+    <!-- Job Step 2 -->
+    <Job v-if="step === 2" :step.sync="step"></Job>
+    <!-- ExperienceInYears Step 3 -->
+    <ExperienceInYears v-if="step === 3" :step.sync="step" ></ExperienceInYears>
+    <!-- Diplom Step 4 -->
+    <Diploma v-if="step === 4" :step.sync="step" ></Diploma>
+    <!-- Language Step 5 -->
+    <Language v-if="step === 5" :step.sync="step"></Language>
   </div>
 </template>
 
 <script>
 import Branch from "./steps/Branch";
-import Diplom from "./steps/Diplom";
+import Diploma from "./steps/Diploma";
 import ExperienceInYears from "./steps/ExperienceInYears";
+import Job from "./steps/Job";
+import Language from "./steps/Language";
 export default {
-  components: {ExperienceInYears, Diplom, Branch },
+  components: {Language, Job, ExperienceInYears, Diploma, Branch },
   name: 'EmployeeFunnel',
   data: function () {
     return {

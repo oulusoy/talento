@@ -4,27 +4,30 @@ export default {
         en: {
             homeEmployee: 'I´m searching a job',
             homeEmployer: 'I`m searching workers',
-            homeEmployerSupport: 'We need support to register a worker'
+            homeEmployerSupport: 'We need support to register a worker',
+            EmployeeFunnelHeader: 'WHICH BRANCH ARE YOU INTERESTED IN ?'
         },
         de: {
             homeEmployee: 'Ich suche einen Job',
             homeEmployer: 'Ich suche einen Mitarbeiter',
-            homeEmployerSupport: 'Wir benötigen Hilfe bei der Anmeldung des Mitarbeiters'
+            homeEmployerSupport: 'Wir benötigen Hilfe bei der Anmeldung des Mitarbeiters',
+            EmployeeFunnelHeader: 'FÜR WELCHE BRANCHE INTERESSIEREN SIE SICH ?'
         },
         tr: {
             homeEmployee: 'Iş arıyorum',
             homeEmployer: 'Bir çalışan arıyorum',
-            homeEmployerSupport: 'Çalışanı kaydettirmek için yardıma ihtiyacımız var'
+            homeEmployerSupport: 'Çalışanı kaydettirmek için yardıma ihtiyacımız var',
+            EmployeeFunnelHeader: 'HANGI BRANCHE ILGINIZI CEKIYOR?'
         }
     }),
     mutations: {
-        commitLanguage(state, value) {
+        mutateLanguage(state, value) {
             state.lang = value
         }
     },
     actions: {
-        setLanguage(context,value) {
-            context.commit('commitLanguage', value)
+        setLanguage(context, value) {
+            context.commit('mutateLanguage', value)
         }
     },
     getters: {

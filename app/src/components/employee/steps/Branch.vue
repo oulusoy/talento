@@ -1,15 +1,13 @@
 <template>
   <div class="main-grid p-3">
     <b-jumbotron class="max1000 aliceblue" >
-      <b-progress :value="60" class="mb-3"></b-progress>
-
       <template #lead>
         FÜR WELCHE BRANCHE INTERESSIEREN SIE SICH ?
       </template>
 
       <hr class="my-4">
 
-      <b-row class="m-3">
+      <b-row class="m-4">
         <b-col>
           <b-form-checkbox
               size="lg"
@@ -56,7 +54,7 @@
               size="lg"
               class="m-2"
               id="checkbox-5"
-              v-model="business.gastronomie"
+              v-model="business.gastronomy"
               name="gastronomie"
               value="gastronomie"
           >
@@ -68,18 +66,13 @@
             v-model="business.medicine"
             name="medicine"
             value="medicine"
-        >
-          medicine
-        </b-form-checkbox>
+          >
+            medicine
+          </b-form-checkbox>
         </b-col>
       </b-row>
-      <b-row class="mb-3">
-        <b-col cols="12">
-          <b-form-input v-model="currentJob" placeholder="current Job"></b-form-input>
-        </b-col>
-      </b-row>
-      <p>
-        * Sie haben keinerlei kosten
+      <p v-if="showErrorMsg" class="red">
+        * Bitte wählen Sie eine Branche aus
       </p>
 
       <b-button class="mr-2" variant="secondary" href="#">zurück</b-button>
@@ -98,16 +91,34 @@ export default {
         nursing: '',
         engineering: '',
         computer: '',
-        gastronomie: '',
+        gastronomy: '',
         medicine: '',
       },
       currentJob: '',
-      nextStep: 2
+      nextStep: 2,
+      showErrorMsg: false
     }
   },
+  mounted() {
+    this.business = this.$store.getters.getBusiness
+  },
   methods: {
+    validate() {
+      return !(
+          this.business.handcraft == '' &&
+          this.business.nursing == '' &&
+          this.business.engineering == '' &&
+          this.business.computer == '' &&
+          this.business.gastronomy == '' &&
+          this.business.medicine == '');
+    },
     nextPage() {
-      this.$emit('update:step', this.nextStep)
+      if (this.validate() != false) {
+        this.$store.dispatch('setBusiness', this.business)
+        this.$emit('update:step', this.nextStep)
+      }  else {
+        this.showErrorMsg = true
+      }
     }
   },
 }
@@ -123,5 +134,9 @@ export default {
 
 .aliceblue {
   background-color: aliceblue;
+}
+
+.red {
+  color: red;
 }
 </style>
