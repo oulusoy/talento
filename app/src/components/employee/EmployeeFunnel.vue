@@ -5,16 +5,25 @@
         <span><strong>{{ step }} / {{ max }}</strong></span>
       </b-progress-bar>
     </b-progress>
+    <Citizen v-if="step === 1" :step.sync="step"></Citizen>
     <!-- Branch Step 1 -->
-    <Branch v-if="step === 1" :step.sync="step" ></Branch>
+    <Branch v-if="step === 2" :step.sync="step" ></Branch>
     <!-- Job Step 2 -->
-    <Job v-if="step === 2" :step.sync="step"></Job>
+    <Job v-if="step === 0" :step.sync="step"></Job>
     <!-- ExperienceInYears Step 3 -->
-    <ExperienceInYears v-if="step === 3" :step.sync="step" ></ExperienceInYears>
+    <ExperienceInYears v-if="step === 0" :step.sync="step" ></ExperienceInYears>
     <!-- Diplom Step 4 -->
-    <Diploma v-if="step === 4" :step.sync="step" ></Diploma>
+    <Diploma v-if="step === 0" :step.sync="step" ></Diploma>
     <!-- Language Step 5 -->
-    <Language v-if="step === 5" :step.sync="step"></Language>
+    <Language v-if="step === 0" :step.sync="step"></Language>
+    <!-- Licence Data Step 6 -->
+    <Licence v-if="step === 0" :step.sync="step"></Licence>
+    <!-- Personal Data Step 7 -->
+    <Personal v-if="step === 0" :step.sync="step"></Personal>
+    <!-- Success Data Step 8 -->
+    <Success v-if="step === 0" :step.sync="step"></Success>
+    <!-- Error Data Step 0 -->
+    <Error v-if="step === 0" :step.sync="step"></Error>
   </div>
 </template>
 
@@ -24,13 +33,18 @@ import Diploma from "./steps/Diploma";
 import ExperienceInYears from "./steps/ExperienceInYears";
 import Job from "./steps/Job";
 import Language from "./steps/Language";
+import Personal from "./steps/Personal";
+import Licence from "./steps/Licence";
+import Success from "./steps/Success";
+import Error from "./steps/Error";
+import Citizen from "./steps/Citizen";
 export default {
-  components: {Language, Job, ExperienceInYears, Diploma, Branch },
+  components: {Citizen, Error, Success, Licence, Personal, Language, Job, ExperienceInYears, Diploma, Branch },
   name: 'EmployeeFunnel',
   data: function () {
     return {
       step: 1,
-      max: 6
+      max: 7
     }
   },
   mounted() {
@@ -47,7 +61,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main-grid{
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background: radial-gradient(circle, rgba(88,171,208,1) 0%, rgba(69,133,161,1) 100%);
 }

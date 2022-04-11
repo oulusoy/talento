@@ -1,0 +1,246 @@
+{
+  "version": "16.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "CdkStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CdkStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CdkStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://505774365047/eu-central-1",
+      "properties": {
+        "templateFile": "CdkStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::505774365047:role/cdk-hnb659fds-deploy-role-505774365047-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::505774365047:role/cdk-hnb659fds-cfn-exec-role-505774365047-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-505774365047-eu-central-1/45cd833367d1e67c4c8e77325dc6a2d36c5179b8a2b70c7bb231891dfd0896dd.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CdkStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::505774365047:role/cdk-hnb659fds-lookup-role-505774365047-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CdkStack.assets"
+      ],
+      "metadata": {
+        "/CdkStack/gotalentoWebBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoWebBucketACD4BC5D"
+          }
+        ],
+        "/CdkStack/gotalentoWebBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoWebBucketPolicy4DB39EE6"
+          }
+        ],
+        "/CdkStack/gotalentoCloudfrontWebDistribution/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoCloudfrontWebDistribution7CA21380"
+          }
+        ],
+        "/CdkStack/gotalentoDeployWebsite/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoDeployWebsiteAwsCliLayer651385CE"
+          }
+        ],
+        "/CdkStack/gotalentoDeployWebsite/CustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoDeployWebsiteCustomResource08157293"
+          }
+        ],
+        "/CdkStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+          }
+        ],
+        "/CdkStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
+          }
+        ],
+        "/CdkStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+          }
+        ],
+        "/CdkStack/gotalentoSeekerTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "gotalentoSeekerTable53B74C21"
+            }
+          }
+        ],
+        "/CdkStack/gotalentoSeekerTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoSeekerTable53B74C21"
+          }
+        ],
+        "/CdkStack/gotalentoSeekerLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoSeekerLambdaServiceRoleECBFFD4D"
+          }
+        ],
+        "/CdkStack/gotalentoSeekerLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoSeekerLambdaServiceRoleDefaultPolicy23F5337F"
+          }
+        ],
+        "/CdkStack/gotalentoSeekerLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoSeekerLambda9875976F"
+          }
+        ],
+        "/CdkStack/gotalentoStreamLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoStreamLambdaServiceRole843CCB6C"
+          }
+        ],
+        "/CdkStack/gotalentoStreamLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoStreamLambdaServiceRoleDefaultPolicyA4824391"
+          }
+        ],
+        "/CdkStack/gotalentoStreamLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoStreamLambdaE15368ED"
+          }
+        ],
+        "/CdkStack/gotalentoStreamLambda/DynamoDBEventSource:CdkStackgotalentoSeekerTable38AEB465/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoStreamLambdaDynamoDBEventSourceCdkStackgotalentoSeekerTable38AEB4655DE1F433"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApi5F3004F5"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApiCloudWatchRole3A2FCE25"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApiAccountF1E9A7FF"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApiDeployment99103E7Af5ad6753387520c99196900f9984265c"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApiDeploymentStageprod33D86B26"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApiEndpoint1880FA7B"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApiOPTIONSE6B70CD4"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/lead/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApilead68550D0E"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/lead/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApileadOPTIONSA5AD9C00"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/lead/POST/ApiPermission.CdkStackgotalentoRestApi4005A44C.POST..lead": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApileadPOSTApiPermissionCdkStackgotalentoRestApi4005A44CPOSTlead5EBBC59B"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/lead/POST/ApiPermission.Test.CdkStackgotalentoRestApi4005A44C.POST..lead": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApileadPOSTApiPermissionTestCdkStackgotalentoRestApi4005A44CPOSTleadB3B94C30"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/lead/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApileadPOST54D8CF90"
+          }
+        ],
+        "/CdkStack/Api Url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiUrl"
+          }
+        ],
+        "/CdkStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CdkStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CdkStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CdkStack"
+    }
+  }
+}

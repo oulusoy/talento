@@ -75,7 +75,6 @@
         * Bitte wählen Sie eine Branche aus
       </p>
 
-      <b-button class="mr-2" variant="secondary" href="#">zurück</b-button>
       <b-button variant="success" @click="nextPage">weiter mit dem Fragebogen</b-button>
     </b-jumbotron>
   </div>

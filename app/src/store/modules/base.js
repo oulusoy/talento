@@ -9,13 +9,22 @@ export default {
             medicine: '',
         },
         currentJob: '',
+        citizen: '',
         experienceInYears: 0,
         diploma: [],
-        language: {
+        seekerLanguage: {
             english: 0,
             german: 0,
             otherLanguage: '',
         },
+        selectedLicence: [],
+        licenceOptions: [
+            { text: 'Auto bis 3,5t', value: 'Auto bis 3,5t' },
+            { text: 'Auto mit Anhänger', value: 'Auto mit Anhänger' },
+            { text: 'Motorrad', value: 'Motorrag' },
+            { text: 'LKW 3,5 - 7,5t', value: 'LKW 3,5 - 7,5t' },
+            { text: 'Bus', value: 'bus' }
+        ],
         seekerEmail: '',
         seekerFirstname: '',
         seekerLastname: '',
@@ -57,6 +66,15 @@ export default {
         },
         mutateSeekerCity(state, value) {
             state.seekerCity = value
+        },
+        mutateSelectedLicence(state, value) {
+            state.selectedLicence = value
+        },
+        mutateSeekerLanguage(state, value) {
+            state.seekerLanguage = value
+        },
+        mutateCitizen(state, value) {
+            state.citizen = value
         }
     },
     actions: {
@@ -93,6 +111,15 @@ export default {
         setSeekerCity(context, value) {
             context.commit('mutateSeekerCity', value)
         },
+        setSelectedLicence(context, value) {
+            context.commit('mutateSelectedLicence', value)
+        },
+        setSeekerLanguage(context, value) {
+            context.commit('mutateSeekerLanguage', value)
+        },
+        setCitizen(context, value) {
+            context.commit('mutateCitizen', value)
+        },
     },
     getters: {
         getBusiness(state) {
@@ -127,6 +154,18 @@ export default {
         },
         getSeekerCity(state) {
             return state.seekerCity
+        },
+        getSelectedLicence(state) {
+            return state.selectedLicence
+        },
+        getLicenceOptions(state) {
+            return state.licenceOptions
+        },
+        getSeekerLanguage(state) {
+            return state.seekerLanguage
+        },
+        getCitizen(state) {
+            return state.citizen
         },
     }
 }

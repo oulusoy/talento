@@ -38,6 +38,7 @@ export default {
       this.$emit('update:step', this.nextStep)
     },
     previousPage() {
+      this.$store.dispatch('setCurrentJob', this.currentJob)
       this.$emit('update:step', this.previousStep)
     }
   },

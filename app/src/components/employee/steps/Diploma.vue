@@ -40,6 +40,7 @@ export default {
       this.$emit('update:step', this.nextStep)
     },
     previousPage() {
+      this.$store.dispatch('setDiploma', this.diploma)
       this.$emit('update:step', this.previousStep)
     }
   },

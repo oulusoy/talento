@@ -41,6 +41,7 @@ export default {
       this.$emit('update:step', this.nextStep)
     },
     previousPage() {
+      this.$store.dispatch('setExperienceInYears', this.experienceInYears)
       this.$emit('update:step', this.previousStep)
     }
   },

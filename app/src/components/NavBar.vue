@@ -17,7 +17,6 @@
               class="flag"
               :src="require('@/assets/images/flags/' + flag)"
               alt=""
-              :key="componentKey"
           ></b-img>
           <b-nav-item-dropdown right>
             <b-dropdown-item @click="setLanguage('en')" >EN</b-dropdown-item>
