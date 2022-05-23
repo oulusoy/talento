@@ -5,15 +5,18 @@
         <span><strong>{{ step }} / {{ max }}</strong></span>
       </b-progress-bar>
     </b-progress>
+    <!-- Citizen Step 1 -->
     <Citizen v-if="step === 1" :step.sync="step"></Citizen>
-    <!-- Branch Step 1 -->
+    <!-- Branch Step 2 -->
     <Branch v-if="step === 2" :step.sync="step" ></Branch>
+    <!-- Diplom Step 3 -->
+    <Diploma v-if="step === 3" :step.sync="step" ></Diploma>
+    <!-- ExperienceInYears Step 4 -->
+    <ExperienceInYears v-if="step === 4" :step.sync="step" ></ExperienceInYears>
     <!-- Job Step 2 -->
     <Job v-if="step === 0" :step.sync="step"></Job>
     <!-- ExperienceInYears Step 3 -->
     <ExperienceInYears v-if="step === 0" :step.sync="step" ></ExperienceInYears>
-    <!-- Diplom Step 4 -->
-    <Diploma v-if="step === 0" :step.sync="step" ></Diploma>
     <!-- Language Step 5 -->
     <Language v-if="step === 0" :step.sync="step"></Language>
     <!-- Licence Data Step 6 -->
