@@ -1,17 +1,56 @@
 export default {
     state: () => ({
         business: {
-            handcraft: '',
-            nursing: '',
-            engineering: '',
-            computer: '',
-            gastronomy: '',
-            medicine: '',
+            handcraft: {
+                metalWorker: false,
+                electrician: false,
+                mechanic: false,
+                painter: false,
+                bricklayer: false,
+                roofer: false,
+            },
+            scientist: {
+                scientist: false,
+                specialScientistField: '',
+                researcher: false,
+                specialResearcherField: '',
+            },
+            hotelAndGastro: {
+                cook: false,
+                hotelManager: false,
+                hotelClerk: false,
+                baker: false
+            },
+            it: {
+                uxDeveloper: false,
+                webDesigner: false,
+                backendDeveloper: false,
+                fullStackDeveloper: false,
+                qa: false
+            },
+            medicine: {
+                doctor: false,
+                specialDoctorField: '',
+                caregiver: false,
+                specialCareField: '',
+            },
+            engineering: {
+                architect: false,
+                civilEngineer: false,
+                machineEngineer: false,
+                mechanicEngineer: false,
+                electricEngineer: false
+            },
+            other : ''
         },
         currentJob: '',
         citizen: '',
         experienceInYears: 0,
-        diploma: [],
+        diploma: {
+            highSchoolDiploma: [],
+            vocationalSchoolDiploma: [],
+            noneDiploma: false
+        },
         seekerLanguage: {
             english: 0,
             german: 0,

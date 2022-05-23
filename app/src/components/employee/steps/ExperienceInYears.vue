@@ -2,21 +2,19 @@
   <div class="main-grid p-3">
     <b-jumbotron class="max1000 aliceblue" >
       <template #lead>
-        Berufserfahrung in Jahren
+        Work experience in years
       </template>
-
       <hr class="my-4">
-
       <b-row class="m-4">
         <b-col>
           <div>
-            <label for="range-2">Wiviel Berufserfahrung in Jahren haben Sie ?</label>
+            <label for="range-2">How many years of work experience do you have?</label>
             <b-form-input id="range-2" v-model="experienceInYears" type="range" min="0" max="20" step="1"></b-form-input>
-            <div class="mt-2">{{ experienceInYears }} Jahre Erfahrung</div>
+            <div class="mt-2">{{ experienceInYears }} Years of Experience <span v-if="experienceInYears == 20">and more</span></div>
           </div>
         </b-col>
       </b-row>
-      <b-button class="mr-2" variant="secondary" @click="previousPage">zurück</b-button>
+      <b-button class="mr-2" variant="secondary" @click="previousPage">back</b-button>
       <b-button variant="success" @click="nextPage">weiter mit dem Fragebogen</b-button>
     </b-jumbotron>
   </div>
@@ -28,8 +26,8 @@ export default {
   data: function () {
     return {
       experienceInYears: 0,
-      previousStep: 2,
-      nextStep: 4
+      previousStep: 3,
+      nextStep: 5
     }
   },
   mounted() {

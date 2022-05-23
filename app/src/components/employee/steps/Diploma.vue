@@ -2,14 +2,49 @@
   <div class="main-grid p-3">
     <b-jumbotron class="max1000 aliceblue" >
       <template #lead>
-        WELCHEN AUSBILDUNGSGRAD HAST DU ?
+        WHICH DIPLOMA DO YOU HAVE ?
       </template>
 
       <hr class="my-4">
 
       <b-row class="m-4">
         <b-col>
-          <b-form-tags input-id="tags-basic" v-model="diploma" placeholder="Schreiben Sie all Ihre Diplome, Aubildungen und Studiengänge auf"></b-form-tags>
+          <!-- HIGHSCHOOL DIPLOMA -->
+          <b-button class="mb-4" pill variant="primary" @click="addHighSchoolInput">+ Add Highschool Diploma</b-button>
+          <div class="form-group" v-for="(input,k) in diploma.highSchoolDiploma" :key="k">
+            <b-row class="m-4">
+              <b-col cols="8">
+                <b-input class="form-control" type="text" v-model="input.field"></b-input>
+              </b-col>
+              <b-col cols="4">
+                <b-button class="mb-4" pill variant="danger" @click="removeHighSchoolInput(k)">remove</b-button>
+              </b-col>
+            </b-row>
+          </div>
+          <br>
+          <!-- VOCATIONAL DIPLOMA -->
+          <b-button class="mb-4" pill variant="primary" @click="addVocationalInput">+ Add Vocational School Diploma</b-button>
+          <div class="form-group" v-for="(input,j) in diploma.vocationalSchoolDiploma" :key="j">
+            <b-row class="m-4">
+              <b-col cols="8">
+                <b-input class="form-control" type="text" v-model="input.field"></b-input>
+              </b-col>
+              <b-col cols="4">
+                <b-button class="mb-4" pill variant="danger" @click="removeVocationalInput(j)">remove</b-button>
+              </b-col>
+            </b-row>
+          </div>
+          <!-- NONE DIPLOMA -->
+          <b-form-checkbox
+              size="lg"
+              class="m-2"
+              id="none-diploma-checkbox"
+              v-model="diploma.noneDiploma"
+              name="noneDiploma"
+              switch
+          >
+            None Diploma
+          </b-form-checkbox>
         </b-col>
       </b-row>
       <p>
@@ -26,15 +61,39 @@ export default {
   name: 'Diploma',
   data: function () {
     return {
-      diploma: [],
-      previousStep: 3,
-      nextStep: 5,
+      diploma:{
+        highSchoolDiploma: [],
+        vocationalSchoolDiploma: [],
+        noneDiploma: false
+      },
+      previousStep: 2,
+      nextStep: 4,
     }
   },
   mounted() {
     this.diploma = this.$store.getters.getDiploma
   },
   methods: {
+    addHighSchoolInput() {
+      this.diploma.highSchoolDiploma.push({field: ''})
+    },
+    removeHighSchoolInput(k) {
+      if ( k === 0 ) {
+        this.diploma.highSchoolDiploma.splice(k,k+1)
+      } else {
+        this.diploma.highSchoolDiploma.splice(k,k)
+      }
+    },
+    addVocationalInput() {
+      this.diploma.vocationalSchoolDiploma.push({field: ''})
+    },
+    removeVocationalInput(j) {
+      if ( j === 0 ) {
+        this.diploma.vocationalSchoolDiploma.splice(j,j+1)
+      } else {
+        this.diploma.vocationalSchoolDiploma.splice(j,j)
+      }
+    },
     nextPage() {
       this.$store.dispatch('setDiploma', this.diploma)
       this.$emit('update:step', this.nextStep)
