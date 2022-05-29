@@ -390,9 +390,7 @@ export default {
   },
   methods: {
     nextPage() {
-      console.log(this.business.scientist.researcher, '+#+');
       if (this.validate()) {
-        console.log('this.business');
         this.$store.dispatch('setBusiness', this.business)
         this.$emit('update:step', this.nextStep)
       }  else {

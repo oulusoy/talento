@@ -24,8 +24,8 @@ export default {
   data: function () {
     return {
       currentJob: '',
-      previousStep: 1,
-      nextStep: 3,
+      previousStep: 3,
+      nextStep: 5,
       showErrorMsg: false
     }
   },

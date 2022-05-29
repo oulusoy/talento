@@ -26,8 +26,8 @@ export default {
   data: function () {
     return {
       experienceInYears: 0,
-      previousStep: 3,
-      nextStep: 5
+      previousStep: 4,
+      nextStep: 6
     }
   },
   mounted() {

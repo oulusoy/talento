@@ -22,6 +22,9 @@
             ></b-form-checkbox-group>
           </b-form-group>
         </b-col>
+        <b-form-invalid-feedback :state="isAnyLicenceSelected">
+          Please Select any option.
+        </b-form-invalid-feedback>
       </b-row>
       <b-button class="mr-2" variant="secondary" @click="previousPage">zurück</b-button>
       <b-button variant="success" @click="nextPage">weiter mit dem Fragebogen</b-button>
@@ -35,9 +38,10 @@ export default {
   data: function () {
     return {
       selectedLicence: [],
+      isAnyLicenceSelected: null,
       licenceOptions: [],
-      previousStep: 5,
-      nextStep: 7,
+      previousStep: 6,
+      nextStep: 8,
     }
   },
   mounted() {
@@ -46,12 +50,19 @@ export default {
   },
   methods: {
     nextPage() {
-      this.$store.dispatch('setSelectedLicence', this.selectedLicence)
-      this.$emit('update:step', this.nextStep)
+      if (this.validate()) {
+        this.$store.dispatch('setSelectedLicence', this.selectedLicence)
+        this.$emit('update:step', this.nextStep)
+      } else {
+        this.isAnyLicenceSelected = false
+      }
     },
     previousPage() {
       this.$store.dispatch('setSelectedLicence', this.selectedLicence)
       this.$emit('update:step', this.previousStep)
+    },
+    validate() {
+      return this.selectedLicence.length > 0
     }
   },
 }

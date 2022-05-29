@@ -46,10 +46,10 @@
             None Diploma
           </b-form-checkbox>
         </b-col>
+        <b-form-invalid-feedback :state="isAnOptionSelected">
+          Please Select any option.
+        </b-form-invalid-feedback>
       </b-row>
-      <p>
-        * optional
-      </p>
       <b-button class="mr-2" variant="secondary" @click="previousPage">zurück</b-button>
       <b-button variant="success" @click="nextPage">weiter mit dem Fragebogen</b-button>
     </b-jumbotron>
@@ -66,6 +66,7 @@ export default {
         vocationalSchoolDiploma: [],
         noneDiploma: false
       },
+      isAnOptionSelected: null,
       previousStep: 2,
       nextStep: 4,
     }
@@ -75,7 +76,9 @@ export default {
   },
   methods: {
     addHighSchoolInput() {
-      this.diploma.highSchoolDiploma.push({field: ''})
+      if (this.diploma.highSchoolDiploma.length <= 8) {
+        this.diploma.highSchoolDiploma.push({field: ''})
+      }
     },
     removeHighSchoolInput(k) {
       if ( k === 0 ) {
@@ -85,7 +88,9 @@ export default {
       }
     },
     addVocationalInput() {
-      this.diploma.vocationalSchoolDiploma.push({field: ''})
+      if (this.diploma.vocationalSchoolDiploma.length <= 8) {
+        this.diploma.vocationalSchoolDiploma.push({field: ''})
+      }
     },
     removeVocationalInput(j) {
       if ( j === 0 ) {
@@ -95,12 +100,20 @@ export default {
       }
     },
     nextPage() {
-      this.$store.dispatch('setDiploma', this.diploma)
-      this.$emit('update:step', this.nextStep)
+      this.validate();
+      if (this.isAnOptionSelected === true) {
+        this.$store.dispatch('setDiploma', this.diploma)
+        this.$emit('update:step', this.nextStep)
+      }
     },
     previousPage() {
       this.$store.dispatch('setDiploma', this.diploma)
       this.$emit('update:step', this.previousStep)
+    },
+    validate() {
+      this.isAnOptionSelected = this.diploma.vocationalSchoolDiploma.length !== 0
+          || this.diploma.highSchoolDiploma.length !== 0
+          || this.diploma.noneDiploma;
     }
   },
 }

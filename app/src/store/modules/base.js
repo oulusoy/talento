@@ -54,15 +54,16 @@ export default {
         seekerLanguage: {
             english: 0,
             german: 0,
-            otherLanguage: '',
+            otherLanguage: [],
         },
         selectedLicence: [],
         licenceOptions: [
-            { text: 'Auto bis 3,5t', value: 'Auto bis 3,5t' },
-            { text: 'Auto mit Anhänger', value: 'Auto mit Anhänger' },
-            { text: 'Motorrad', value: 'Motorrag' },
-            { text: 'LKW 3,5 - 7,5t', value: 'LKW 3,5 - 7,5t' },
-            { text: 'Bus', value: 'bus' }
+            { text: 'Auto bis 3,5t', value: 'Car till 3,5t' },
+            { text: 'Auto mit Anhänger', value: 'Car with trailer' },
+            { text: 'Motorrad', value: 'Motorcycle' },
+            { text: 'LKW 3,5 - 7,5t', value: 'Truck 3,5 - 7,5t' },
+            { text: 'Bus', value: 'Bus' },
+            { text: 'keine', value: 'None' }
         ],
         seekerEmail: '',
         seekerFirstname: '',
@@ -71,6 +72,30 @@ export default {
         seekerPhone: '',
         seekerCountry: '',
         seekerCity: '',
+        payload: {
+            business: {},
+            currentJob: null,
+            experienceInYears: null,
+            citizen: null,
+            diploma: {
+                highSchoolDiploma: [],
+                vocationalSchoolDiploma: [],
+                noneDiploma: null
+            },
+            seekerLanguage: {
+                english: 0,
+                german: 0,
+                otherLanguage: [],
+            },
+            selectedLicence: [],
+            seekerEmail: null,
+            seekerFirstname: null,
+            seekerLastname: null,
+            seekerAge: null,
+            seekerPhone: null,
+            seekerCountry: null,
+            seekerCity: null,
+        }
     }),
     mutations: {
         mutateBusiness(state, value) {
@@ -205,6 +230,21 @@ export default {
         },
         getCitizen(state) {
             return state.citizen
+        },
+        getPayload(state) {
+            state.payload.business = state.business
+            state.payload.citizen = state.citizen
+            state.payload.currentJob = state.currentJob
+            state.payload.experienceInYears = state.experienceInYears
+            state.payload.diploma = state.diploma
+            state.payload.seekerFirstname = state.seekerFirstname
+            state.payload.seekerLastname = state.seekerLastname
+            state.payload.seekerAge = state.seekerAge
+            state.payload.seekerCity = state.seekerCity
+            state.payload.seekerCountry = state.seekerCountry
+            state.payload.seekerEmail = state.seekerEmail
+            state.payload.seekerPhone = state.seekerPhone
+            return state.payload
         },
     }
 }

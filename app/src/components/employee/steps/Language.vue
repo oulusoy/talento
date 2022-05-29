@@ -26,12 +26,17 @@
       <b-row class="m-4">
         <b-col>
           <b-form-group id="input-group-3" label="Welche Sprache sprichst du noch ?" label-for="input-3" class="w-50">
-            <b-form-select
-                id="input-3"
-                v-model="seekerLanguage.otherLanguage"
-                :options="countries"
-                required
-            ></b-form-select>
+            <b-button class="mb-4" pill variant="primary" @click="addAnotherLanguage">+ Add another language</b-button>
+            <div class="form-group" v-for="(input,m) in seekerLanguage.otherLanguage" :key="m">
+              <b-row class="m-4">
+                <b-col cols="8">
+                  <b-input class="form-control" type="text" v-model="input.field"></b-input>
+                </b-col>
+                <b-col cols="4">
+                  <b-button class="mb-4" pill variant="danger" @click="removeAnotherLanguage(m)">remove</b-button>
+                </b-col>
+              </b-row>
+            </div>
           </b-form-group>
         </b-col>
       </b-row>
@@ -49,16 +54,16 @@ export default {
       seekerLanguage: {
         english: 0,
         german: 0,
-        otherLanguage: '',
+        otherLanguage: [],
       },
-      previousStep: 4,
-      nextStep: 6,
-      countries: []
+      previousStep: 5,
+      nextStep: 7,
+      isoLanguages: []
     }
   },
   mounted() {
     this.currentJob = this.$store.getters.getCurrentJob
-    this.countries = this.$store.getters.getCountries
+    this.isoLanguages = this.$store.getters.getIsoLanguages
     this.seekerLanguage = this.$store.getters.getSeekerLanguage
   },
   methods: {
@@ -69,6 +74,18 @@ export default {
     previousPage() {
       this.$store.dispatch('setSeekerLanguage', this.seekerLanguage)
       this.$emit('update:step', this.previousStep)
+    },
+    addAnotherLanguage() {
+      if (this.seekerLanguage.otherLanguage.length <= 8) {
+        this.seekerLanguage.otherLanguage.push({language: ''})
+      }
+    },
+    removeAnotherLanguage(m) {
+      if ( m === 0 ) {
+        this.seekerLanguage.otherLanguage.splice(m,m+1)
+      } else {
+        this.seekerLanguage.otherLanguage.splice(m,m)
+      }
     }
   },
 }

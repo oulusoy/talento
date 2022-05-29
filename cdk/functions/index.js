@@ -14,9 +14,21 @@ exports.handler = async (event) => {
         TableName: dynamoSeekerTableName,
         Item: {
             'seekerID': AWS.util.uuid.v4(),
-            'test' : requestJSON.test,
-            'email' : requestJSON.email,
             'date' : date,
+            'business' : requestJSON.business,
+            'currentJob' : requestJSON.currentJob,
+            'experienceInYears' : requestJSON.experienceInYears,
+            'citizen' : requestJSON.citizen,
+            'diploma' : requestJSON.diploma,
+            'seekerLanguage' : requestJSON.seekerLanguage,
+            'selectedLicence' : requestJSON.selectedLicence,
+            'seekerEmail' : requestJSON.seekerEmail,
+            'seekerFirstname' : requestJSON.seekerFirstname,
+            'seekerLastname' : requestJSON.seekerLastname,
+            'seekerAge' : requestJSON.seekerAge,
+            'seekerPhone' : requestJSON.seekerPhone,
+            'seekerCountry' : requestJSON.seekerCountry,
+            'seekerCity' : requestJSON.seekerCity,
         },
         ReturnConsumedCapacity: "TOTAL"
     };

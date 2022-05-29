@@ -10,72 +10,89 @@
       <b-row class="m-4">
         <b-col>
           <b-form-group
-              id="input-group-1"
+              id="email-group"
               label="Email:"
-              label-for="input-1"
+              label-for="input-email"
               class="w-75"
           >
             <b-form-input
-                id="input-1"
+                id="input-email"
                 v-model="seekerEmail"
                 type="email"
                 placeholder="Email *"
-                :state="validateEmail"
                 required
             ></b-form-input>
-            <b-form-invalid-feedback :state="validateEmail">
-              Your user ID must be 5-12 characters long.
+            <b-form-invalid-feedback :state="isEmailValid">
+              invalid email.
             </b-form-invalid-feedback>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="Firstname:" label-for="input-2" class="w-75">
+          <b-form-group id="firstname-group" label="Firstname:" label-for="input-firstname" class="w-75">
             <b-form-input
-                id="input-2"
+                id="input-firstname"
                 v-model="seekerFirstname"
                 placeholder="firstname *"
                 required
             ></b-form-input>
+            <b-form-invalid-feedback :state="isSeekerFirstnameValid">
+              invalid Firstname.
+            </b-form-invalid-feedback>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="Lastname:" label-for="input-2" class="w-75">
+          <b-form-group id="lastname-group" label="Lastname:" label-for="input-lastname" class="w-75">
             <b-form-input
-                id="input-2"
+                id="input-lastname"
                 v-model="seekerLastname"
                 placeholder="lastname *"
                 required
             ></b-form-input>
+            <b-form-invalid-feedback :state="isSeekerLastnameValid">
+              invalid Lastname.
+            </b-form-invalid-feedback>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="Phone:" label-for="input-2" class="w-75">
+          <b-form-group id="phone-group" label="Phone:" label-for="input-phone" class="w-75">
             <b-form-input
-                id="input-2"
+                id="input-phone"
                 v-model="seekerPhone"
                 type="tel"
                 placeholder="Phone *"
                 required
             ></b-form-input>
+            <b-form-invalid-feedback :state="isSeekerPhoneValid">
+              invalid Phone.
+            </b-form-invalid-feedback>
           </b-form-group>
 
-          <b-form-group id="input-group-3" label="In Welchen Land lebst du ?" label-for="input-3" class="w-50">
+          <b-form-group id="country-group" label="In Welchen Land lebst du ?" label-for="input-country" class="w-50">
             <b-form-select
-                id="input-3"
+                id="input-country"
                 v-model="seekerCountry"
                 :options="countries"
                 required
             ></b-form-select>
+            <b-form-invalid-feedback :state="isSeekerCountryValid">
+              please choose a country.
+            </b-form-invalid-feedback>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="City:" label-for="input-2" class="w-75">
+          <b-form-group id="city-group" label="City:" label-for="input-city" class="w-75">
             <b-form-input
-                id="input-2"
+                id="input-city"
                 v-model="seekerCity"
                 placeholder="City *"
                 required
             ></b-form-input>
+            <b-form-invalid-feedback :state="isSeekerCityValid">
+              please choose a city.
+            </b-form-invalid-feedback>
           </b-form-group>
 
-          <label for="demo-sb">Wie alt bist du ?</label>
-          <b-form-spinbutton id="demo-sb" v-model="seekerAge" min="1" max="100" class="w-25"></b-form-spinbutton>
+          <label for="age-sb">Wie alt bist du ?</label>
+          <b-form-spinbutton id="age-sb" v-model="seekerAge" min="14" max="70" class="w-25"></b-form-spinbutton>
+          <b-form-invalid-feedback :state="isSeekerAgeValid">
+            please select your age.
+          </b-form-invalid-feedback>
         </b-col>
       </b-row>
       <b-button class="mr-2" variant="secondary" @click="previousPage">zurück</b-button>
@@ -92,14 +109,21 @@ export default {
   data: function () {
     return {
       seekerEmail: '',
+      isEmailValid: null,
       seekerFirstname: '',
+      isSeekerFirstnameValid: null,
       seekerLastname: '',
+      isSeekerLastnameValid: null,
       seekerAge: 25,
+      isSeekerAgeValid: null,
       seekerPhone: '',
+      isSeekerPhoneValid: null,
       seekerCountry: '',
+      isSeekerCountryValid: null,
       seekerCity: '',
-      previousStep: 6,
-      nextStep: 8,
+      isSeekerCityValid: null,
+      previousStep: 7,
+      nextStep: 9,
       errorStep: 0,
       countries: [],
     }
@@ -123,11 +147,13 @@ export default {
       this.$store.dispatch('setSeekerPhone', this.seekerPhone)
       this.$store.dispatch('setSeekerCountry', this.seekerCountry)
       this.$store.dispatch('setSeekerCity', this.seekerCity)
-      this.sendData()
+      if (this.validate()) {
+        this.sendData()
+      }
     },
     async sendData() {
-      let success = await RestCaller.sendLead({'test':'pppp','email':'onur-ulusoy@hotmail.de'})
-      console.log('erg:::::', success)
+      let payload = this.$store.getters.getPayload
+      let success = await RestCaller.sendLead(payload)
       if (success.status === 200 ) {
         this.$emit('update:step', this.nextStep)
       } else {
@@ -136,18 +162,68 @@ export default {
     },
     previousPage() {
       this.$store.dispatch('setSeekerEmail', this.seekerEmail)
-      this.$store.dispatch('setSeekerFirstname', this.seekerFirstname)
-      this.$store.dispatch('setSeekerLastname', this.seekerLastname)
+      this.$store.dispatch('setSeekerFirstname', this.seekerFirstname.trim())
+      this.$store.dispatch('setSeekerLastname', this.seekerLastname.trim())
       this.$store.dispatch('setSeekerAge', this.seekerAge)
       this.$store.dispatch('setSeekerPhone', this.seekerPhone)
       this.$store.dispatch('setSeekerCountry', this.seekerCountry)
       this.$store.dispatch('setSeekerCity', this.seekerCity)
       this.$emit('update:step', this.previousStep)
-    }
-  },
-  computed: {
+    },
+    validate() {
+      this.validateEmail()
+      this.validateFirstName()
+      this.validateLastName()
+      this.validatePhoneNumber()
+      this.validateCountry()
+      this.validateCity()
+      this.validateAge()
+      return this.isEmailValid &&
+      this.isSeekerFirstnameValid &&
+      this.isSeekerLastnameValid &&
+      this.isSeekerPhoneValid &&
+      this.isSeekerCountryValid &&
+      this.isSeekerCityValid &&
+      this.isSeekerAgeValid
+    },
     validateEmail() {
-      return this.seekerEmail.length > 4 && this.seekerEmail.length < 13
+      let regex = new RegExp('^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$');
+      this.isEmailValid = regex.test(this.seekerEmail.trim())
+      return this.isEmailValid
+    },
+    validateFirstName() {
+      let regex = new RegExp('^(?=.{1,50}$)[a-zA-Z]+(?:[.\\s][a-zA-Z]+)*$');
+      this.isSeekerFirstnameValid = regex.test(this.seekerFirstname.trim())
+      return this.isSeekerFirstnameValid
+    },
+    validateLastName() {
+      let regex = new RegExp('^(?=.{1,50}$)[a-zA-Z]+(?:[.\\s][a-zA-Z]+)*$');
+      this.isSeekerLastnameValid = regex.test(this.seekerLastname.trim())
+      return this.isSeekerLastnameValid
+    },
+    validatePhoneNumber() {
+      let regex = new RegExp('^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\\s\\./0-9]*$');
+      this.isSeekerPhoneValid = regex.test(this.seekerPhone.trim())
+      return this.isSeekerPhoneValid
+    },
+    validateCountry() {
+      if (this.seekerCountry != null) {
+        this.isSeekerCountryValid = this.seekerCountry.length !== 0
+      } else {
+        this.isSeekerCountryValid = false
+      }
+      return this.isSeekerCountryValid
+    },
+    validateCity() {
+      let regex = new RegExp('^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$');
+      this.isSeekerCityValid = regex.test(this.seekerCity.trim())
+      return this.isSeekerCountryValid
+    },
+    validateAge() {
+      let regex = new RegExp('([1-9]|[1-9][0-9]|100)(\\s([1-9]|[1-9][0-9]|100))*$');
+      console.log(regex.test(this.seekerAge))
+      this.isSeekerAgeValid = regex.test(this.seekerAge)
+      return this.isSeekerAgeValid
     }
   }
 }

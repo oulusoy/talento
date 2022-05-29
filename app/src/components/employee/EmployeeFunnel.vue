@@ -11,20 +11,18 @@
     <Branch v-if="step === 2" :step.sync="step" ></Branch>
     <!-- Diplom Step 3 -->
     <Diploma v-if="step === 3" :step.sync="step" ></Diploma>
-    <!-- ExperienceInYears Step 4 -->
-    <ExperienceInYears v-if="step === 4" :step.sync="step" ></ExperienceInYears>
     <!-- Job Step 2 -->
-    <Job v-if="step === 0" :step.sync="step"></Job>
-    <!-- ExperienceInYears Step 3 -->
-    <ExperienceInYears v-if="step === 0" :step.sync="step" ></ExperienceInYears>
+    <Job v-if="step === 4" :step.sync="step"></Job>
+    <!-- ExperienceInYears Step 4 -->
+    <ExperienceInYears v-if="step === 5" :step.sync="step" ></ExperienceInYears>
     <!-- Language Step 5 -->
-    <Language v-if="step === 0" :step.sync="step"></Language>
+    <Language v-if="step === 6" :step.sync="step"></Language>
     <!-- Licence Data Step 6 -->
-    <Licence v-if="step === 0" :step.sync="step"></Licence>
+    <Licence v-if="step === 7" :step.sync="step"></Licence>
     <!-- Personal Data Step 7 -->
-    <Personal v-if="step === 0" :step.sync="step"></Personal>
+    <Personal v-if="step === 8" :step.sync="step"></Personal>
     <!-- Success Data Step 8 -->
-    <Success v-if="step === 0" :step.sync="step"></Success>
+    <Success v-if="step === 9" :step.sync="step"></Success>
     <!-- Error Data Step 0 -->
     <Error v-if="step === 0" :step.sync="step"></Error>
   </div>
@@ -47,16 +45,8 @@ export default {
   data: function () {
     return {
       step: 1,
-      max: 7
+      max: 9
     }
-  },
-  mounted() {
-    console.log(this.step)
-  },
-  watch: {
-    step: function () {
-      console.log(this.step)
-    },
   }
 }
 </script>
