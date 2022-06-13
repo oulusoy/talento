@@ -2,6 +2,7 @@
 gotalento/node_modules
 app/node_modules
 cdk/node_modules
+cdk/cdk.out
 */node_modules
 /dist
 
