@@ -131,7 +131,7 @@
           "cdk-hnb659fds-assets-505774365047-eu-central-1"
         ],
         "SourceObjectKeys": [
-          "39fd40d7ba5bd7cdd6843b95f244ef165e318d8df3462301ab17da391218da24.zip"
+          "0a10408970fa635deb59abe42e897c189e5b9f3eda6d56acf2fd987287a2ba96.zip"
         ],
         "DestinationBucketName": {
           "Ref": "gotalentoWebBucketACD4BC5D"
@@ -342,6 +342,33 @@
         "aws:cdk:path": "CdkStack/gotalentoSeekerTable/Resource"
       }
     },
+    "gotalentoCompanyTableD854A523": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "companyID",
+            "KeyType": "HASH"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "companyID",
+            "AttributeType": "S"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "StreamSpecification": {
+          "StreamViewType": "NEW_AND_OLD_IMAGES"
+        },
+        "TableName": "company"
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoCompanyTable/Resource"
+      }
+    },
     "gotalentoSeekerLambdaServiceRoleECBFFD4D": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -428,7 +455,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-505774365047-eu-central-1",
-          "S3Key": "a35a93c1b1798fe57f9fec1451eadfce3111e5efd14d1edd10392986d36ad99d.zip"
+          "S3Key": "e24f6dadc9567eba804990b6df1fef94f314a974a8996798519314176f8537cb.zip"
         },
         "Role": {
           "Fn::GetAtt": [
@@ -445,7 +472,67 @@
       ],
       "Metadata": {
         "aws:cdk:path": "CdkStack/gotalentoSeekerLambda/Resource",
-        "aws:asset:path": "asset.a35a93c1b1798fe57f9fec1451eadfce3111e5efd14d1edd10392986d36ad99d",
+        "aws:asset:path": "asset.e24f6dadc9567eba804990b6df1fef94f314a974a8996798519314176f8537cb",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "gotalentoCompanyLambdaServiceRole45C13FBA": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoCompanyLambda/ServiceRole/Resource"
+      }
+    },
+    "gotalentoCompanyLambdaED6A7364": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-505774365047-eu-central-1",
+          "S3Key": "e24f6dadc9567eba804990b6df1fef94f314a974a8996798519314176f8537cb.zip"
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "gotalentoCompanyLambdaServiceRole45C13FBA",
+            "Arn"
+          ]
+        },
+        "Handler": "company.handler",
+        "Runtime": "nodejs14.x"
+      },
+      "DependsOn": [
+        "gotalentoCompanyLambdaServiceRole45C13FBA"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoCompanyLambda/Resource",
+        "aws:asset:path": "asset.e24f6dadc9567eba804990b6df1fef94f314a974a8996798519314176f8537cb",
         "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
@@ -536,7 +623,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-505774365047-eu-central-1",
-          "S3Key": "a35a93c1b1798fe57f9fec1451eadfce3111e5efd14d1edd10392986d36ad99d.zip"
+          "S3Key": "e24f6dadc9567eba804990b6df1fef94f314a974a8996798519314176f8537cb.zip"
         },
         "Role": {
           "Fn::GetAtt": [
@@ -553,7 +640,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "CdkStack/gotalentoStreamLambda/Resource",
-        "aws:asset:path": "asset.a35a93c1b1798fe57f9fec1451eadfce3111e5efd14d1edd10392986d36ad99d",
+        "aws:asset:path": "asset.e24f6dadc9567eba804990b6df1fef94f314a974a8996798519314176f8537cb",
         "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
@@ -637,7 +724,7 @@
         "aws:cdk:path": "CdkStack/gotalentoRestApi/Account"
       }
     },
-    "gotalentoRestApiDeployment99103E7Af5ad6753387520c99196900f9984265c": {
+    "gotalentoRestApiDeployment99103E7Af14d7883813b1b829490ff2dfafafc98": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -646,6 +733,9 @@
         "Description": "Automatically created by the RestApi construct"
       },
       "DependsOn": [
+        "gotalentoRestApicompanyOPTIONSFC254F45",
+        "gotalentoRestApicompanyPOST7B76F12E",
+        "gotalentoRestApicompanyC6F6CA1D",
         "gotalentoRestApileadOPTIONSA5AD9C00",
         "gotalentoRestApileadPOST54D8CF90",
         "gotalentoRestApilead68550D0E",
@@ -662,7 +752,7 @@
           "Ref": "gotalentoRestApi5F3004F5"
         },
         "DeploymentId": {
-          "Ref": "gotalentoRestApiDeployment99103E7Af5ad6753387520c99196900f9984265c"
+          "Ref": "gotalentoRestApiDeployment99103E7Af14d7883813b1b829490ff2dfafafc98"
         },
         "StageName": "prod"
       },
@@ -893,10 +983,181 @@
         "aws:cdk:path": "CdkStack/gotalentoRestApi/Default/lead/POST/Resource"
       }
     },
+    "gotalentoRestApicompanyC6F6CA1D": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "gotalentoRestApi5F3004F5",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "company",
+        "RestApiId": {
+          "Ref": "gotalentoRestApi5F3004F5"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoRestApi/Default/company/Resource"
+      }
+    },
+    "gotalentoRestApicompanyOPTIONSFC254F45": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "gotalentoRestApicompanyC6F6CA1D"
+        },
+        "RestApiId": {
+          "Ref": "gotalentoRestApi5F3004F5"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'http://localhost:8080'",
+                "method.response.header.Vary": "'Origin'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Vary": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoRestApi/Default/company/OPTIONS/Resource"
+      }
+    },
+    "gotalentoRestApicompanyPOSTApiPermissionCdkStackgotalentoRestApi4005A44CPOSTcompanyC903BC0C": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "gotalentoCompanyLambdaED6A7364",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:eu-central-1:505774365047:",
+              {
+                "Ref": "gotalentoRestApi5F3004F5"
+              },
+              "/",
+              {
+                "Ref": "gotalentoRestApiDeploymentStageprod33D86B26"
+              },
+              "/POST/company"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoRestApi/Default/company/POST/ApiPermission.CdkStackgotalentoRestApi4005A44C.POST..company"
+      }
+    },
+    "gotalentoRestApicompanyPOSTApiPermissionTestCdkStackgotalentoRestApi4005A44CPOSTcompany3E5B8231": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "gotalentoCompanyLambdaED6A7364",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:eu-central-1:505774365047:",
+              {
+                "Ref": "gotalentoRestApi5F3004F5"
+              },
+              "/test-invoke-stage/POST/company"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoRestApi/Default/company/POST/ApiPermission.Test.CdkStackgotalentoRestApi4005A44C.POST..company"
+      }
+    },
+    "gotalentoRestApicompanyPOST7B76F12E": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "ResourceId": {
+          "Ref": "gotalentoRestApicompanyC6F6CA1D"
+        },
+        "RestApiId": {
+          "Ref": "gotalentoRestApi5F3004F5"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:eu-central-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "gotalentoCompanyLambdaED6A7364",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkStack/gotalentoRestApi/Default/company/POST/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/21STW/CMAz9LbuHbIztsGOB7TQ0BNOuVZoYFkiTqk5AVdX/PictlEmc/Pz1HD/nmU9f+dODOONEquPE6IK3Wy/kkVEob3HG23mQR/BssbMD6s3aGS2bMTz4vTMXCB2TxgW1q531vF1q9LUugtfOxqZbv2M4y1sFlXFNCVTdkyyvASYQwSPPoumYEWWhBG+J5lM0UP9AjZF2q+3egHf2I1iZBl0BlV7x+4koty7UElaiqqgppu9H11CXGjE9UouStxtnICaSHTXoUcdUY0XpFKn4LYq+MoGOiUrvhYezaIgE0GeVTjwjzKR0gZa92TsKNXp0mH2i7AG1pudGsdkK/K9TMTmgS3YYknB30S43UbecbiyN5tkZF0YnKVmSOPInAQJ6V95j+kf/FXwV6C7WKeAHfDxNX/j0jb7VAbWe1LSTLoFvevsHvq5FwHICAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/21STW/CMAz9LbuHDIYm7VpgOw0NwbRrlSaGBdKkqhNQVfW/z0kLZRInP389x8954bNXPn0SF5xIdZoYXfB254U8MQrlLc55uwjyBJ4t93ZAvdk4o2Uzhge/dxYCoWPSuKD2tbOetyuNvtZF8NrZ2HTvdwzneaugMq4pgap7ktUtwAQieORZNB0zoiyU4C3RfIoG6h+oMdLutD0Y8M5+BCvToBug0ht+PxPlzoVawlpUFTXF9OPoBupSI6ZHalHydusMxESyowY96phqrCidIhW/RdFXJtAxUemD8HARDZEA+qzSiWeEmZQu0LJ3e0ehRo8Oc0iUPaDW9NwoNluD/3UqJgd0zQ5DEu6u2uUm6pbTjaXRPLvg0ugkJUsSR/4kQEDvykdM/+i/gq8C3cU6BfyIz+fZG5/Srzqi1pOaVtIl8G1v/wBJnUUNcQIAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "CdkStack/CDKMetadata/Default"

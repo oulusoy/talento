@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::505774365047:role/cdk-hnb659fds-deploy-role-505774365047-eu-central-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::505774365047:role/cdk-hnb659fds-cfn-exec-role-505774365047-eu-central-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-505774365047-eu-central-1/45cd833367d1e67c4c8e77325dc6a2d36c5179b8a2b70c7bb231891dfd0896dd.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-505774365047-eu-central-1/6c5628bbe3758da3ae9dfd0d95889d964ea787e7232aa7af2c8c61da1d3cbe48.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -101,6 +101,20 @@
             "data": "gotalentoSeekerTable53B74C21"
           }
         ],
+        "/CdkStack/gotalentoCompanyTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "gotalentoCompanyTableD854A523"
+            }
+          }
+        ],
+        "/CdkStack/gotalentoCompanyTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoCompanyTableD854A523"
+          }
+        ],
         "/CdkStack/gotalentoSeekerLambda/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -117,6 +131,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "gotalentoSeekerLambda9875976F"
+          }
+        ],
+        "/CdkStack/gotalentoCompanyLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoCompanyLambdaServiceRole45C13FBA"
+          }
+        ],
+        "/CdkStack/gotalentoCompanyLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoCompanyLambdaED6A7364"
           }
         ],
         "/CdkStack/gotalentoStreamLambda/ServiceRole/Resource": [
@@ -164,7 +190,7 @@
         "/CdkStack/gotalentoRestApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "gotalentoRestApiDeployment99103E7Af5ad6753387520c99196900f9984265c"
+            "data": "gotalentoRestApiDeployment99103E7Af14d7883813b1b829490ff2dfafafc98"
           }
         ],
         "/CdkStack/gotalentoRestApi/DeploymentStage.prod/Resource": [
@@ -213,6 +239,36 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "gotalentoRestApileadPOST54D8CF90"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/company/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApicompanyC6F6CA1D"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/company/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApicompanyOPTIONSFC254F45"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/company/POST/ApiPermission.CdkStackgotalentoRestApi4005A44C.POST..company": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApicompanyPOSTApiPermissionCdkStackgotalentoRestApi4005A44CPOSTcompanyC903BC0C"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/company/POST/ApiPermission.Test.CdkStackgotalentoRestApi4005A44C.POST..company": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApicompanyPOSTApiPermissionTestCdkStackgotalentoRestApi4005A44CPOSTcompany3E5B8231"
+          }
+        ],
+        "/CdkStack/gotalentoRestApi/Default/company/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gotalentoRestApicompanyPOST7B76F12E"
           }
         ],
         "/CdkStack/Api Url": [

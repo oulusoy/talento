@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import base from './modules/base';
+import employee from './modules/employee';
+import employer from './modules/employer';
 import language from './modules/language';
 import country from "./modules/country";
 
@@ -11,8 +12,9 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    base,
+    employee,
     language,
-    country
+    country,
+    employer
   },
 });

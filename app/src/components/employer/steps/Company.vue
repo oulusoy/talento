@@ -2,7 +2,7 @@
   <div class="main-grid p-3">
     <b-jumbotron class="max1000 aliceblue" >
       <template #lead>
-        WELCHE SPRACHEN BEHERRSCHST DU ?
+        TRAGEN SIE BITTE IHRE FIRMENDATEN EIN
       </template>
 
       <hr class="my-4">
@@ -88,11 +88,6 @@
             </b-form-invalid-feedback>
           </b-form-group>
 
-          <label for="age-sb">Wie alt bist du ?</label>
-          <b-form-spinbutton id="age-sb" v-model="seekerAge" min="14" max="70" class="w-25"></b-form-spinbutton>
-          <b-form-invalid-feedback :state="isSeekerAgeValid">
-            please select your age.
-          </b-form-invalid-feedback>
         </b-col>
       </b-row>
       <b-button class="mr-2" variant="secondary" @click="previousPage">zurück</b-button>
@@ -105,23 +100,21 @@
 import * as RestCaller from "../../../service/RestCaller";
 
 export default {
-  name: 'Personal',
+  name: 'Company',
   data: function () {
     return {
-      seekerEmail: '',
+      companyEmail: '',
       isEmailValid: null,
-      seekerFirstname: '',
-      isSeekerFirstnameValid: null,
-      seekerLastname: '',
-      isSeekerLastnameValid: null,
-      seekerAge: 25,
-      isSeekerAgeValid: null,
-      seekerPhone: '',
-      isSeekerPhoneValid: null,
-      seekerCountry: '',
-      isSeekerCountryValid: null,
-      seekerCity: '',
-      isSeekerCityValid: null,
+      companyFirstname: '',
+      isFirstnameValid: null,
+      companyLastname: '',
+      isLastnameValid: null,
+      companyPhone: '',
+      isPhoneValid: null,
+      companyCountry: '',
+      isCountryValid: null,
+      companyCity: '',
+      isCityValid: null,
       previousStep: 7,
       nextStep: 9,
       errorStep: 0,
@@ -129,36 +122,38 @@ export default {
     }
   },
   mounted() {
-    this.seekerEmail = this.$store.getters.getSeekerEmail
-    this.seekerFirstname = this.$store.getters.getSeekerFirstname
-    this.seekerLastname = this.$store.getters.getSeekerLastname
-    this.seekerAge = this.$store.getters.getSeekerAge
-    this.seekerPhone = this.$store.getters.getSeekerPhone
-    this.seekerCountry = this.$store.getters.getSeekerCountry
-    this.seekerCity = this.$store.getters.getSeekerCity
+    this.companyEmail = this.$store.getters.getCompanyEmail
+    this.companyFirstname = this.$store.getters.getCompanyFirstname
+    this.companyLastname = this.$store.getters.getCompanyLastname
+    this.companyPhone = this.$store.getters.getCompanyPhone
+    this.companyCountry = this.$store.getters.getCompanyCountry
+    this.companyCity = this.$store.getters.getCompanyCity
     this.countries = this.$store.getters.getCountries
   },
   methods: {
     nextPage() {
-      this.$store.dispatch('setSeekerEmail', this.seekerEmail)
-      this.$store.dispatch('setSeekerFirstname', this.seekerFirstname)
-      this.$store.dispatch('setSeekerLastname', this.seekerLastname)
-      this.$store.dispatch('setSeekerAge', this.seekerAge)
-      this.$store.dispatch('setSeekerPhone', this.seekerPhone)
-      this.$store.dispatch('setSeekerCountry', this.seekerCountry)
-      this.$store.dispatch('setSeekerCity', this.seekerCity)
+      this.$store.dispatch('setCompanyEmail', this.companyEmail)
+      this.$store.dispatch('setCompanyFirstname', this.companyFirstname)
+      this.$store.dispatch('setCompanyLastname', this.companyLastname)
+      this.$store.dispatch('setCompanyPhone', this.companyPhone)
+      this.$store.dispatch('setCompanyCountry', this.companyCountry)
+      this.$store.dispatch('setCompanyCity', this.companyCity)
       if (this.validate()) {
         this.sendData()
       }
     },
     async sendData() {
-      let payload = this.$store.getters.getPayload
+      let payload = this.$store.getters.getCompanyPayload
+      console.log(payload)
+      /*
       let success = await RestCaller.sendLead(payload)
       if ( success.status === 200 ) {
         this.$emit('update:step', this.nextStep)
       } else {
         this.$emit('update:step', this.errorStep)
       }
+
+       */
     },
     previousPage() {
       this.$store.dispatch('setSeekerEmail', this.seekerEmail)

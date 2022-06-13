@@ -40,10 +40,23 @@ export class CdkStack extends Stack {
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     })
 
+    const companyTable = new dynamodb.Table(this,'gotalentoCompanyTable', {
+      tableName: 'company',
+      partitionKey: { name:'companyID', type: dynamodb.AttributeType.STRING},
+      stream: dynamodb.StreamViewType.NEW_AND_OLD_IMAGES,
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+    })
+
     const seekerLambda = new lambda.Function(this,'gotalentoSeekerLambda', {
       runtime: lambda.Runtime.NODEJS_14_X,
       code: lambda.Code.fromAsset('functions'),
       handler: 'index.handler',
+    })
+
+    const companyLambda = new lambda.Function(this,'gotalentoCompanyLambda', {
+      runtime: lambda.Runtime.NODEJS_14_X,
+      code: lambda.Code.fromAsset('functions'),
+      handler: 'company.handler',
     })
 
     const streamLambda = new lambda.Function(this,'gotalentoStreamLambda', {
@@ -87,6 +100,10 @@ export class CdkStack extends Stack {
     goTalentoRestApi.root
         .resourceForPath('/lead')
         .addMethod('POST',new apiGateway.LambdaIntegration(seekerLambda))
+
+    goTalentoRestApi.root
+        .resourceForPath('/company')
+        .addMethod('POST',new apiGateway.LambdaIntegration(companyLambda))
 
     new cdk.CfnOutput(this,'Api Url', {
       value: goTalentoRestApi.url ?? 'something went wrong'
