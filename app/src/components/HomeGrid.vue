@@ -24,7 +24,7 @@
         <!-- EMPLOYEE BLOCK -->
         <b-col cols="12" lg="6">
           <b-row>
-            <b-col class="employee_box1 text-center" cols="12" lg="6" v-b-hover="hoverHandler">
+            <b-col class="employee_box1 text-center" cols="12" lg="6" v-b-hover="hoverHandler" @click="goToEmployerFunnel">
               <div class="h1 mb-0 icons">
                 <b-icon icon="people"></b-icon>
               </div>
@@ -56,6 +56,9 @@ export default {
     },
     goToEmployeeFunnel() {
       this.$router.push('/employee')
+    },
+    goToEmployerFunnel() {
+      this.$router.push('/employer')
     }
   }
 }

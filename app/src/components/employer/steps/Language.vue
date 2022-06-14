@@ -56,8 +56,8 @@ export default {
         german: 0,
         otherLanguage: [],
       },
-      previousStep: 5,
-      nextStep: 7,
+      previousStep: 3,
+      nextStep: 5,
       isoLanguages: []
     }
   },

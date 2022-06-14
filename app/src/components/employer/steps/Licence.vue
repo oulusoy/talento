@@ -40,8 +40,8 @@ export default {
       selectedLicence: [],
       isAnyLicenceSelected: null,
       licenceOptions: [],
-      previousStep: 6,
-      nextStep: 8,
+      previousStep: 4,
+      nextStep: 6,
     }
   },
   mounted() {

@@ -32,7 +32,7 @@
               size="lg"
               class="m-2"
               id="electrician-checkbox"
-              v-model="business.handcraft.electrician"
+              v-model="sector.handcraft.electrician"
               name="electrician"
               switch
           >
@@ -42,7 +42,7 @@
             size="lg"
             class="m-2"
             id="painter-checkbox"
-            v-model="business.handcraft.painter"
+            v-model="sector.handcraft.painter"
             name="painter"
             switch
         >
@@ -52,7 +52,7 @@
               size="lg"
               class="m-2"
               id="bricklayer-checkbox"
-              v-model="business.handcraft.bricklayer"
+              v-model="sector.handcraft.bricklayer"
               name="bricklayer"
               switch
           >
@@ -62,7 +62,7 @@
               size="lg"
               class="m-2"
               id="roofer-checkbox"
-              v-model="business.handcraft.roofer"
+              v-model="sector.handcraft.roofer"
               name="roofer"
               switch
           >
@@ -86,24 +86,24 @@
               size="lg"
               class="m-2"
               id="scientist-checkbox"
-              v-model="business.scientist.scientist"
+              v-model="sector.scientist.scientist"
               name="scientist"
               switch
           >
             Scientist
           </b-form-checkbox>
-          <b-form-input v-if="business.scientist.scientist === true" v-model="business.scientist.specialScientistField" placeholder="special Science field"></b-form-input>
+          <b-form-input v-if="sector.scientist.scientist === true" v-model="sector.scientist.specialScientistField" placeholder="special Science field"></b-form-input>
           <b-form-checkbox
               size="lg"
               class="m-2"
               id="researcher-checkbox"
-              v-model="business.scientist.researcher"
+              v-model="sector.scientist.researcher"
               name="researcher"
               switch
           >
             Researcher
           </b-form-checkbox>
-          <b-form-input v-if="business.scientist.researcher === true" v-model="business.scientist.specialResearcherField" placeholder="other"></b-form-input>
+          <b-form-input v-if="sector.scientist.researcher === true" v-model="sector.scientist.specialResearcherField" placeholder="other"></b-form-input>
         </b-card>
       </b-collapse>
 
@@ -122,7 +122,7 @@
               size="lg"
               class="m-2"
               id="cook-checkbox"
-              v-model="business.hotelAndGastro.cook"
+              v-model="sector.hotelAndGastro.cook"
               name="cook"
               switch
           >
@@ -132,7 +132,7 @@
               size="lg"
               class="m-2"
               id="baker-checkbox"
-              v-model="business.hotelAndGastro.baker"
+              v-model="sector.hotelAndGastro.baker"
               name="baker"
               switch
           >
@@ -142,7 +142,7 @@
               size="lg"
               class="m-2"
               id="hotelManager-checkbox"
-              v-model="business.hotelAndGastro.hotelManager"
+              v-model="sector.hotelAndGastro.hotelManager"
               name="hotelManager"
               switch
           >
@@ -152,7 +152,7 @@
               size="lg"
               class="m-2"
               id="hotelClerk-checkbox"
-              v-model="business.hotelAndGastro.hotelClerk"
+              v-model="sector.hotelAndGastro.hotelClerk"
               name="hotelClerk"
               switch
           >
@@ -176,7 +176,7 @@
               size="lg"
               class="m-2"
               id="uxDeveloper-checkbox"
-              v-model="business.it.uxDeveloper"
+              v-model="sector.it.uxDeveloper"
               name="uxDeveloper"
               switch
           >
@@ -186,7 +186,7 @@
               size="lg"
               class="m-2"
               id="webDesigner-checkbox"
-              v-model="business.it.webDesigner"
+              v-model="sector.it.webDesigner"
               name="webDesigner"
               switch
           >
@@ -196,7 +196,7 @@
               size="lg"
               class="m-2"
               id="backendDeveloper-checkbox"
-              v-model="business.it.backendDeveloper"
+              v-model="sector.it.backendDeveloper"
               name="backendDeveloper"
               switch
           >
@@ -206,7 +206,7 @@
               size="lg"
               class="m-2"
               id="fullStackDeveloper-checkbox"
-              v-model="business.it.fullStackDeveloper"
+              v-model="sector.it.fullStackDeveloper"
               name="fullStackDeveloper"
               switch
           >
@@ -216,7 +216,7 @@
               size="lg"
               class="m-2"
               id="qa-checkbox"
-              v-model="business.it.qa"
+              v-model="sector.it.qa"
               name="qualityAssurance"
               value="qualityAssurance"
               switch
@@ -241,24 +241,24 @@
               size="lg"
               class="m-2"
               id="doctor-checkbox"
-              v-model="business.medicine.doctor"
+              v-model="sector.medicine.doctor"
               name="doctor"
               switch
           >
             Doctor
           </b-form-checkbox>
-          <b-form-input v-if="business.medicine.doctor === true" v-model="business.medicine.specialDoctorField" placeholder="special field"></b-form-input>
+          <b-form-input v-if="sector.medicine.doctor === true" v-model="sector.medicine.specialDoctorField" placeholder="special field"></b-form-input>
           <b-form-checkbox
               size="lg"
               class="m-2"
               id="caregiver-checkbox"
-              v-model="business.medicine.caregiver"
+              v-model="sector.medicine.caregiver"
               name="caregiver"
               switch
           >
             Caregiver
           </b-form-checkbox>
-          <b-form-input v-if="business.medicine.caregiver === true" v-model="business.medicine.specialCareField" placeholder="special field"></b-form-input>
+          <b-form-input v-if="sector.medicine.caregiver === true" v-model="sector.medicine.specialCareField" placeholder="special field"></b-form-input>
         </b-card>
       </b-collapse>
 
@@ -277,7 +277,7 @@
               size="lg"
               class="m-2"
               id="architect-checkbox"
-              v-model="business.engineering.architect"
+              v-model="sector.engineering.architect"
               name="doctor"
               switch
           >
@@ -287,7 +287,7 @@
               size="lg"
               class="m-2"
               id="civilEngineer-checkbox"
-              v-model="business.engineering.civilEngineer"
+              v-model="sector.engineering.civilEngineer"
               name="civilEngineer"
               switch
           >
@@ -297,7 +297,7 @@
               size="lg"
               class="m-2"
               id="machineEngineer-checkbox"
-              v-model="business.engineering.machineEngineer"
+              v-model="sector.engineering.machineEngineer"
               name="machineEngineer"
               switch
           >
@@ -307,7 +307,7 @@
               size="lg"
               class="m-2"
               id="electricEngineer-checkbox"
-              v-model="business.engineering.electricEngineer"
+              v-model="sector.engineering.electricEngineer"
               name="machineEngineer"
               switch
           >
@@ -316,7 +316,7 @@
         </b-card>
       </b-collapse>
 
-      <b-form-input class="w-50 mb-4 ml-5" v-model="business.other" placeholder="other"></b-form-input>
+      <b-form-input class="w-50 mb-4 ml-5" v-model="sector.other" placeholder="other"></b-form-input>
 
       <p v-if="showErrorMsg" class="red">
         * Bitte wählen Sie eine Branche aus
@@ -377,7 +377,7 @@ export default {
         other : ''
       },
       currentJob: '',
-      nextStep: 3,
+      nextStep: 2,
       previousStep: 1,
       showErrorMsg: false
     }

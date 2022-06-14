@@ -10,15 +10,13 @@
     <!-- Diplom Step 3 -->
     <Diploma v-if="step === 2" :step.sync="step" ></Diploma>
     <!-- Job Step 2 -->
-    <Job v-if="step === 4" :step.sync="step"></Job>
-    <!-- ExperienceInYears Step 4 -->
-    <ExperienceInYears v-if="step === 5" :step.sync="step" ></ExperienceInYears>
+    <ExperienceInYears v-if="step === 3" :step.sync="step" ></ExperienceInYears>
     <!-- Language Step 5 -->
-    <Language v-if="step === 6" :step.sync="step"></Language>
+    <Language v-if="step === 4" :step.sync="step"></Language>
     <!-- Licence Data Step 6 -->
-    <Licence v-if="step === 7" :step.sync="step"></Licence>
+    <Licence v-if="step === 5" :step.sync="step"></Licence>
     <!-- Personal Data Step 7 -->
-    <Company v-if="step === 8" :step.sync="step"></Company>
+    <Company v-if="step === 6" :step.sync="step"></Company>
     <!-- Success Data Step 8 -->
     <Success v-if="step === 9" :step.sync="step"></Success>
     <!-- Error Data Step 0 -->
@@ -27,16 +25,16 @@
 </template>
 
 <script>
-import Branch from "./steps/Branch";
-import Diploma from "./steps/Diploma";
-import ExperienceInYears from "./steps/ExperienceInYears";
-import Job from "./steps/Job";
-import Language from "./steps/Language";
-import Licence from "./steps/Licence";
-import Success from "./steps/Success";
-import Error from "./steps/Error";
+import Branch from "@/components/employer/steps/Branch";
+import Diploma from "@/components/employer/steps/Diploma";
+import ExperienceInYears from "@/components/employer/steps/ExperienceInYears";
+import Language from "@/components/employer/steps/Language";
+import Licence from "@/components/employer/steps/Licence";
+import Success from "@/components/employer/steps/Success";
+import Error from "@/components/employer/steps/Error";
+import Company from "@/components/employer/steps/Company";
 export default {
-  components: { Error, Success, Licence, Language, Job, ExperienceInYears, Diploma, Branch },
+  components: { Error, Success, Licence, Language, ExperienceInYears, Diploma, Branch, Company },
   name: 'EmployerFunnel',
   data: function () {
     return {

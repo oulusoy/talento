@@ -17,7 +17,7 @@
           >
             <b-form-input
                 id="input-email"
-                v-model="seekerEmail"
+                v-model="companyEmail"
                 type="email"
                 placeholder="Email *"
                 required
@@ -30,11 +30,11 @@
           <b-form-group id="firstname-group" label="Firstname:" label-for="input-firstname" class="w-75">
             <b-form-input
                 id="input-firstname"
-                v-model="seekerFirstname"
+                v-model="companyFirstname"
                 placeholder="firstname *"
                 required
             ></b-form-input>
-            <b-form-invalid-feedback :state="isSeekerFirstnameValid">
+            <b-form-invalid-feedback :state="isFirstnameValid">
               invalid Firstname.
             </b-form-invalid-feedback>
           </b-form-group>
@@ -42,11 +42,11 @@
           <b-form-group id="lastname-group" label="Lastname:" label-for="input-lastname" class="w-75">
             <b-form-input
                 id="input-lastname"
-                v-model="seekerLastname"
+                v-model="companyLastname"
                 placeholder="lastname *"
                 required
             ></b-form-input>
-            <b-form-invalid-feedback :state="isSeekerLastnameValid">
+            <b-form-invalid-feedback :state="isLastnameValid">
               invalid Lastname.
             </b-form-invalid-feedback>
           </b-form-group>
@@ -54,12 +54,12 @@
           <b-form-group id="phone-group" label="Phone:" label-for="input-phone" class="w-75">
             <b-form-input
                 id="input-phone"
-                v-model="seekerPhone"
+                v-model="companyPhone"
                 type="tel"
                 placeholder="Phone *"
                 required
             ></b-form-input>
-            <b-form-invalid-feedback :state="isSeekerPhoneValid">
+            <b-form-invalid-feedback :state="isPhoneValid">
               invalid Phone.
             </b-form-invalid-feedback>
           </b-form-group>
@@ -67,11 +67,11 @@
           <b-form-group id="country-group" label="In Welchen Land lebst du ?" label-for="input-country" class="w-50">
             <b-form-select
                 id="input-country"
-                v-model="seekerCountry"
+                v-model="companyCountry"
                 :options="countries"
                 required
             ></b-form-select>
-            <b-form-invalid-feedback :state="isSeekerCountryValid">
+            <b-form-invalid-feedback :state="isCountryValid">
               please choose a country.
             </b-form-invalid-feedback>
           </b-form-group>
@@ -79,11 +79,11 @@
           <b-form-group id="city-group" label="City:" label-for="input-city" class="w-75">
             <b-form-input
                 id="input-city"
-                v-model="seekerCity"
+                v-model="companyCity"
                 placeholder="City *"
                 required
             ></b-form-input>
-            <b-form-invalid-feedback :state="isSeekerCityValid">
+            <b-form-invalid-feedback :state="isCityValid">
               please choose a city.
             </b-form-invalid-feedback>
           </b-form-group>
@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import * as RestCaller from "../../../service/RestCaller";
 
 export default {
   name: 'Company',
@@ -138,6 +137,7 @@ export default {
       this.$store.dispatch('setCompanyPhone', this.companyPhone)
       this.$store.dispatch('setCompanyCountry', this.companyCountry)
       this.$store.dispatch('setCompanyCity', this.companyCity)
+      this.sendData()
       if (this.validate()) {
         this.sendData()
       }
@@ -156,13 +156,12 @@ export default {
        */
     },
     previousPage() {
-      this.$store.dispatch('setSeekerEmail', this.seekerEmail)
-      this.$store.dispatch('setSeekerFirstname', this.seekerFirstname.trim())
-      this.$store.dispatch('setSeekerLastname', this.seekerLastname.trim())
-      this.$store.dispatch('setSeekerAge', this.seekerAge)
-      this.$store.dispatch('setSeekerPhone', this.seekerPhone)
-      this.$store.dispatch('setSeekerCountry', this.seekerCountry)
-      this.$store.dispatch('setSeekerCity', this.seekerCity)
+      this.$store.dispatch('setCompanyEmail', this.companyEmail)
+      this.$store.dispatch('setCompanyFirstname', this.companyFirstname)
+      this.$store.dispatch('setCompanyLastname', this.companyLastname)
+      this.$store.dispatch('setCompanyPhone', this.companyPhone)
+      this.$store.dispatch('setCompanyCountry', this.companyCountry)
+      this.$store.dispatch('setCompanyCity', this.companyCity)
       this.$emit('update:step', this.previousStep)
     },
     validate() {
@@ -172,53 +171,45 @@ export default {
       this.validatePhoneNumber()
       this.validateCountry()
       this.validateCity()
-      this.validateAge()
       return this.isEmailValid &&
       this.isSeekerFirstnameValid &&
       this.isSeekerLastnameValid &&
       this.isSeekerPhoneValid &&
       this.isSeekerCountryValid &&
-      this.isSeekerCityValid &&
-      this.isSeekerAgeValid
+      this.isSeekerCityValid
     },
     validateEmail() {
       let regex = new RegExp('^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$');
-      this.isEmailValid = regex.test(this.seekerEmail.trim())
+      this.isEmailValid = regex.test(this.companyEmail.trim())
       return this.isEmailValid
     },
     validateFirstName() {
       let regex = new RegExp('^(?=.{1,50}$)[a-zA-Z]+(?:[.\\s][a-zA-Z]+)*$');
-      this.isSeekerFirstnameValid = regex.test(this.seekerFirstname.trim())
-      return this.isSeekerFirstnameValid
+      this.isFirstnameValid = regex.test(this.companyFirstname.trim())
+      return this.isFirstnameValid
     },
     validateLastName() {
       let regex = new RegExp('^(?=.{1,50}$)[a-zA-Z]+(?:[.\\s][a-zA-Z]+)*$');
-      this.isSeekerLastnameValid = regex.test(this.seekerLastname.trim())
-      return this.isSeekerLastnameValid
+      this.isLastnameValid = regex.test(this.companyLastname.trim())
+      return this.isLastnameValid
     },
     validatePhoneNumber() {
       let regex = new RegExp('^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\\s\\./0-9]*$');
-      this.isSeekerPhoneValid = regex.test(this.seekerPhone.trim())
-      return this.isSeekerPhoneValid
+      this.isPhoneValid = regex.test(this.companyPhone.trim())
+      return this.isPhoneValid
     },
     validateCountry() {
-      if (this.seekerCountry != null) {
-        this.isSeekerCountryValid = this.seekerCountry.length !== 0
+      if (this.companyCountry != null) {
+        this.isCountryValid = this.companyCountry.length !== 0
       } else {
-        this.isSeekerCountryValid = false
+        this.isCountryValid = false
       }
-      return this.isSeekerCountryValid
+      return this.isCountryValid
     },
     validateCity() {
       let regex = new RegExp('^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$');
-      this.isSeekerCityValid = regex.test(this.seekerCity.trim())
-      return this.isSeekerCountryValid
-    },
-    validateAge() {
-      let regex = new RegExp('([1-9]|[1-9][0-9]|100)(\\s([1-9]|[1-9][0-9]|100))*$');
-      console.log(regex.test(this.seekerAge))
-      this.isSeekerAgeValid = regex.test(this.seekerAge)
-      return this.isSeekerAgeValid
+      this.isCityValid = regex.test(this.companyCity.trim())
+      return this.isCityValid
     }
   }
 }

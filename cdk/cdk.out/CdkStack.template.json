@@ -131,7 +131,7 @@
           "cdk-hnb659fds-assets-505774365047-eu-central-1"
         ],
         "SourceObjectKeys": [
-          "0a10408970fa635deb59abe42e897c189e5b9f3eda6d56acf2fd987287a2ba96.zip"
+          "532acbeb9ff7b0d19f27b24431da09c8194a3cbdbaf0b5c0afcb5c1f64a07c51.zip"
         ],
         "DestinationBucketName": {
           "Ref": "gotalentoWebBucketACD4BC5D"

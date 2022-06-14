@@ -67,8 +67,8 @@ export default {
         noneDiploma: false
       },
       isAnOptionSelected: null,
-      previousStep: 2,
-      nextStep: 4,
+      previousStep: 1,
+      nextStep: 3,
     }
   },
   mounted() {
